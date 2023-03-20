@@ -1,0 +1,56 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.panel {
+  display: inline-block;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.value {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.unit {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.graph {
+  height: 100px;
+  background-color: #f7f7f7;
+}
+
+.explanation {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.explanation strong {
+  font-weight: bold;
+}
+
+.explanation span {
+  font-weight: bold;
+  color: #008000;
+}
+
+h1{
+  text-align: center;
+}
+
+.info{
+  /* text-align: center; */
+}

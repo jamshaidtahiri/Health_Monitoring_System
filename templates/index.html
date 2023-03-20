@@ -1,9 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Heart Rate Data</title>
+  
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">  
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+<style>
+  
+
+
+
+</style>
+  
+<title>Smart Health Monitoring</title>
 </head>
 <body>
+  
+
+
+
+
+
+  <h1>Smart Health Monitoring</h1>
+
+  <div class="info">
+    <h2>Patient Information</h2>
+    <p><strong>Name:</strong> John Smith</p>
+    <p><strong>Disease:</strong> Diabetes</p>
+    <p><strong>Number of devices:</strong> 3</p>
+  </div>
+
+	<div class="panel">
+    <div class="icon">&#x1F321;</div>
+    <div class="value" id="temperature"></div>
+    <div class="unit">°C</div>
+    <div class="graph"></div>
+    <div class="explanation">
+      <strong>Temperature</strong><br>
+      Ideal range: <span>36.5°C - 37.5°C</span>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="icon">&#x1F4A7;</div>
+    <div class="value" id="humidity"></div>
+    <div class="unit">%</div>
+    <div class="graph"></div>
+    <div class="explanation">
+      <strong>Humidity</strong><br>
+      Ideal range: <span>30% - 60%</span>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="icon">&#x2764;</div>
+    <div class="value" id="pulse-rate"></div>
+    <div class="unit">bpm</div>
+    <div class="graph"></div>
+    <div class="explanation">
+      <strong>Pulse Rate</strong><br>
+      Ideal range: <span>60 bpm - 100 bpm</span>
+    </div>
+  </div>
+  
+
+
+  <i class="fas fa-heart"></i>
+
+  
+
+
+  
+  
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+
+
+
+
+
+
+
+
+
+  
   <h1>Heart Rate Data</h1>
   <table>
     <thead>
@@ -25,5 +102,4 @@
       {% endfor %}
     </tbody>
   </table>
-</body>
-</html>
+

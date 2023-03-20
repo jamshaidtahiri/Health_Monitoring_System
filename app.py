@@ -13,19 +13,26 @@ def is_valid_api_key(api_key):
 
 @app.route('/')
 def index():
-    conn = sqlite3.connect('database.db')
-    c = conn.cursor()
-    c.execute('SELECT * FROM sensor_data')
-    rows = c.fetchall()
-    conn.close()
-    return render_template('index.html', rows=rows)
+    # conn = sqlite3.connect('database.db')
+    # c = conn.cursor()
+    # c.execute('SELECT * FROM sensor_data')
+    # rows = c.fetchall()
+    # conn.close()
+    #return render_template('index.html', rows=rows)
+    return render_template('index.html')
 
 @app.route('/api', methods=['GET'])
-def get_example():
+def get_sensor_data():
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute('SELECT temperature, humidity, pulse_rate FROM sensor_data ORDER BY rowid DESC LIMIT 1;')
+    result = c.fetchone()
+    temperature, humidity, pulse_rate = result
+    conn.close()
     data = {
-        'temperature': 80,
-        'humidity': 80,
-        'pulse_rate': 80
+        'temperature': temperature,
+        'humidity': humidity,
+        'pulse_rate': pulse_rate
     }
     return jsonify(data)
 
@@ -56,4 +63,4 @@ def add_sensor_data():
 
 if __name__ == '__main__':
     #app.run(debug=True)
-    app.run(host='192.168.119.187', port=8000, debug=True)
+    app.run(host='192.168.118.186', port=8000, debug=True)
