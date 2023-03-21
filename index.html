@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">   -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> -->
+<style>
+  
+body {
+  font-family: Arial, sans-serif;
+}
+
+.panel {
+  display: inline-block;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  min-width: 200px;
+}
+
+.value {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.unit {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.graph {
+  height: 100px;
+  background-color: #f7f7f7;
+}
+
+.explanation {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.explanation strong {
+  font-weight: bold;
+}
+
+.explanation span {
+  font-weight: bold;
+  color: #008000;
+}
+
+h1{
+  text-align: center;
+}
+
+.info{
+  /* text-align: center; */
+}
+
+
+</style>
+  
+<title>Smart Health Monitoring</title>
+</head>
+<body>
+  
+
+
+
+
+
+  <h1>Smart Health Monitoring</h1>
+
+  <div class="info">
+    <h2>Patient Information</h2>
+    <p><strong>Name:</strong> John Smith</p>
+    <p><strong>Disease:</strong> Diabetes</p>
+    <p><strong>Number of devices:</strong> 3</p>
+  </div>
+
+	<div class="panel">
+    <div class="icon">&#x1F321;</div>
+    <div class="value" id="temperature"></div>
+    <div class="unit">°C</div>
+    <div class="graph"></div>
+    <div class="explanation">
+      <strong>Temperature</strong><br>
+      Ideal range: <span>36.5°C - 37.5°C</span>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="icon">&#x1F4A7;</div>
+    <div class="value" id="humidity"></div>
+    <div class="unit">%</div>
+    <div class="graph"></div>
+    <div class="explanation">
+      <strong>Humidity</strong><br>
+      Ideal range: <span>30% - 60%</span>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="icon">&#x2764;</div>
+    <div class="value" id="pulse-rate"></div>
+    <div class="unit">bpm</div>
+    <div class="graph"></div>
+    <div class="explanation">
+      <strong>Pulse Rate</strong><br>
+      Ideal range: <span>60 bpm - 100 bpm</span>
+    </div>
+  </div>
+  
+
+
+  <i class="fas fa-heart"></i>
+
+  
+
+
+  
+  
+  <script>
+  
+  
+//   const apiKey = 'RGQID3QZDTWSQ7NK';
+// const channelId = '2075342';
+// const field1 = 'field1';
+// const field2 = 'field2';
+// const field3 = 'field3';
+
+// const url = `https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=1`;
+
+// fetch(url)
+//   .then(response => response.json())
+//   .then(data => {
+//     const field1Value = data.feeds[0][field1];
+//     const field2Value = data.feeds[0][field2];
+//     const field3Value = data.feeds[0][field3];
+//     console.log(`Latest values - ${field1}: ${field1Value}, ${field2}: ${field2Value}, ${field3}: ${field3Value}`);
+//     // Update the div element with the temperature value
+//   document.getElementById("temperature").innerHTML = field1Value;
+
+// // Update the div element with the humidity value
+// document.getElementById("humidity").innerHTML = field2Value;
+
+// // Update the div element with the pulse rate value
+// document.getElementById("pulse-rate").innerHTML = field3Value;
+//   })
+//   .catch(error => console.error(error));
+
+  
+  
+
+
+
+
+
+
+
+
+
+const apiKey = 'RGQID3QZDTWSQ7NK';
+const channelId = '2075342';
+
+setInterval(() => {
+  const xhr = new XMLHttpRequest();
+  const url = `https://api.thingspeak.com/channels/${channelId}/fields/1,2,3?api_key=${apiKey}&results=1`;
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      const response = JSON.parse(this.responseText);
+      const value1 = response.feeds[0].field1;
+      const value2 = response.feeds[0].field2;
+      const value3 = response.feeds[0].field3;
+      console.log(`The latest values are: ${value1}, ${value2}, ${value3}`);
+       // Update the div element with the temperature value
+  document.getElementById("temperature").innerHTML = value1;
+
+// Update the div element with the humidity value
+document.getElementById("humidity").innerHTML = value2;
+
+// Update the div element with the pulse rate value
+document.getElementById("pulse-rate").innerHTML = value3;
+    }
+  };
+
+  xhr.open('GET', url, true);
+  xhr.send();
+}, 10000);
+
+  
+  
+  
+  
+  
+ 
+    </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
